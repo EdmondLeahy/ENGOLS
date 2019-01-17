@@ -258,6 +258,7 @@ void LeastSquares::iterate()
 
 		//update the obs and unkns
 		updateUnknowns();
+
 		//Check the tolerance
 		if (getMaxDelta() <= tol) {
 			Delta = true;
@@ -491,16 +492,6 @@ void LeastSquares::computeCxh()
 
 void LeastSquares::dataSnoop()
 {
-	//y = MatrixXd::Zero(Cvh.rows(), 2);
-	//for (int i = 0; i < Cvh.rows(); i++) {
-	//	y(i, 0) = v[i] / sqrt(Cvh(i, i));
-	//	if ((-1 * 0.513) <= y(i, 0) && y(i, 0) <= 0.513) {
-	//		y(i, 1) = 1;
-	//	}
-	//	else {
-	//		y(i, 1) = 0;
-	//	}
-	//}
 	
 	//Global Testing
 	VectorXd gt;
@@ -534,7 +525,7 @@ void LeastSquares::dataSnoop()
 		for (int j = 0; j < blunders.size(); j++) {
 			for (int k = 0; k < blunders.size(); k++) {
 				rho(j, k) = Qv(j, k) / (sqrt(Qv(j, j))*sqrt(Qv(k, k)));
-				//if (rho(j, k) > 1.0*pow(10, -4) && rho(j, k) < 1) { cout << "The "; }
+				if (rho(j, k) > 1.0*pow(10, -4) && rho(j, k) < 1) { cout << "The "; }
 			}
 		}
 		
